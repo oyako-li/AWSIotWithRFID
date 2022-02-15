@@ -1,29 +1,26 @@
 import json
-import time
 import asyncio
 import boto3
 
 import __aws_props as ap
 import __iot
 import simpleaudio as sa
-
-from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
 from pirc522 import RFID
 
-BUCKET_NAME = 'test-connection-practice'
+
+
+BUCKET_NAME = '####'
 
 ACKFlag = False
 LedFlag = False
 SetFlag = False
-SetSound = sa.WaveObject.from_wave_file("/home/pi/Desktop/__onp28.wav")
-Alert = sa.WaveObject.from_wave_file("/home/pi/Desktop/__sys47.wav")
+SetSound = sa.WaveObject.from_wave_file("./data/###.wav")
+Alert = sa.WaveObject.from_wave_file("./data/#?#.wav")
 
 S3_RESOURCE = boto3.resource('s3')
 
 
 s3_data = StringIO(s3_object.get()['Body'].read().decode('utf-8'))
-# data = pd.read_csv(s3_data)
-print(s3_object.get()['Body'].read().decode('utf-8'))
 
 async def pubAsync(topic, user_id):
     global ACKFlag
@@ -65,19 +62,8 @@ async def subAsync(_user_id):
 
 def pub_callback(mid):
     global ACKFlag
-
     ACKFlag=True
     print("AckReceive")
-
-# 
-# def sub_callback(client, userdata, message):
-    # global SetFlag
-    # SetFlag = True
-    # print("Received a new message: ")
-    # print(message.payload)
-    # print("from topic: ")
-    # print(message.topic)
-    # print("--------------\n\n")
 
 async def main():
     global ACKFlag
@@ -118,7 +104,7 @@ async def main():
         else :
             render.suspend()
  
-    rdr.cleanup()
+    render.cleanup()
 
 if __name__=='__main__':
     asyncio.run(main())

@@ -1,17 +1,13 @@
 import json
-import time
 import asyncio
 
 import __aws_props as ap
 import __iot
 import simpleaudio as sa
 
-from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
-from pirc522 import RFID
-
 ACKFlag = False
 LedFlag = False
-Alert = sa.WaveObject.from_wave_file("/home/pi/Desktop/__sys47.wav")
+Alert = sa.WaveObject.from_wave_file("./data/#?#.wav")
 
 def pub_callback(mid):
     global ACKFlag
