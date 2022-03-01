@@ -30,3 +30,6 @@ class Render:
 
     def suspend(self):
         self.rdr.wait_for_tag()
+
+    def cleanup(self):
+        self.rdr.cleanup()
